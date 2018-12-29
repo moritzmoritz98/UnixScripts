@@ -1,9 +1,25 @@
 alias ll='ls -lah'
 alias .='cd .. && ll'
-alias maker='make'
+alias maker='make -j4'
+alias open='xdg-open'
+
 
 xd() {
     [ "$1" ] && mkdir "$1" && cd "$1" || { echo "Error: No parameter specified" 1>&2; `exit 1`; }
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Determines upgradable pip-Packages which are not under control of pacman.   #
+# Prints those packages to stdout.                                            #
+# @require `pip3`                                                             #
+# @date 29.12.2018                                                            #
+# @author Moritz Kirschte                                                     #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+pipUpdate() {
+    for pkg in `pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1`; do
+      p=`echo $pkg | sed 's/-/_/g'`
+      [[ -z `ls -1 /usr/lib/python3.7/site-packages/ | grep "^$p" | grep egg` ]] && echo $pkg
+    done
 }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
