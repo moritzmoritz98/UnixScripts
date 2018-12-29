@@ -16,9 +16,8 @@ xd() {
 # @author Moritz Kirschte                                                     #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 pipUpdate() {
-    for pkg in `pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1`; do
-      p=`echo $pkg | sed 's/-/_/g'`
-      [[ -z `ls -1 /usr/lib/python3.7/site-packages/ | grep "^$p" | grep egg` ]] && echo $pkg
+    for pkg in `pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | sed 's/-/_/g'`; do
+      [[ -z `ls -1 /usr/lib/python3.7/site-packages/ | grep "^$pkg" | grep egg` ]] && echo $pkg
     done
 }
 
