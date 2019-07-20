@@ -1,11 +1,21 @@
 alias ll='ls -lah'
-alias .='cd .. && ll'
 alias maker='make -j4'
 alias open='xdg-open'
 
 
 xd() {
     [ "$1" ] && mkdir "$1" && cd "$1" || { echo "Error: No parameter specified" 1>&2; `exit 1`; }
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Calls an advanced `ls` output after each `cd`.                              #
+# @date 21.07.2019                                                            #
+# @author https://blog.mphomphego.co.za/blog/2019/02/28/ \                    #
+#                 How-I-increased-my-productivity-using-dotfiles.html         #
+# @licence MIT                                                                #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+cd() {
+    builtin cd "$@" && ls -thor
 }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
