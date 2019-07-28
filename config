@@ -247,7 +247,7 @@ bindsym --release $mod+Shift+Print exec "scrot -s ~/Pictures//Screenshot%Y-%m-%d
 #exec --no-startup-id autoxrandr
 exec --no-startup-id thunderbird
 exec --no-startup-id chromium
-exec --no-startup-id i3-msg 'workspace $workspace4; exec /usr/bin/xterm'
+exec --no-startup-id i3-msg 'workspace $ws4; exec /usr/bin/xterm'
 exec --no-startup-id telegram-desktop
 exec --no-startup-id env LD_LIBRARY_PATH=/usr/lib/openssl-1.0 whatpulse
 
