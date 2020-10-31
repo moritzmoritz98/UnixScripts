@@ -210,8 +210,8 @@ bar {
 #bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 #bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 #bindsym XF86AudioMute exec amixer -q set Master toggle
-bindsym XF86AudioRaiseVolume exec pamixer -i 2 -u --allow-boost
-bindsym XF86AudioLowerVolume exec pamixer -d 2 -u
+bindsym XF86AudioRaiseVolume exec pamixer -i 5 -u --allow-boost
+bindsym XF86AudioLowerVolume exec pamixer -d 5 -u
 bindsym XF86AudioMute exec pamixer -t
 
 
@@ -224,7 +224,7 @@ set $mode_system System (l) lock, (e) logout, (s) shutdown, (r) reboot, (m) moni
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    #bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym o exec --no-startup-id $Locker && systemctl suspend, mode "default"
     #bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym s exec --no-startup-id shutdown now, mode "default"
