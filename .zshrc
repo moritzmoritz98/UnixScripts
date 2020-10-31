@@ -21,13 +21,13 @@ cd() {
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Determines upgradable pip-Packages which are not under control of pacman.   #
 # Prints those packages to stdout.                                            #
-# @require `pip3`                                                             #
-# @date 29.12.2018                                                            #
+# @require `pip`, `pacman`                                                    #
+# @date 31.10.2020                                                            #
 # @author Moritz Kirschte                                                     #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 pipUpdate() {
-    for pkg in `pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | sed 's/-/_/g'`; do
-      [[ -z `ls -1 /usr/lib/python3.7/site-packages/ | grep "^$pkg" | grep egg` ]] && echo $pkg
+    for pkg in `sudo pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1`; do
+      pacman -Qs "$pkg" >/dev/null || echo "$pkg"  # select if no local pacman entry could be found
     done
 }
 
